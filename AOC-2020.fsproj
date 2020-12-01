@@ -7,7 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Program.fs"/>
+        <Compile Include="Program.fs" />
+        <None Include="Day1\Solution.fsx" />
+        <Content Include="Day1\Input.txt" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
 </Project>
