@@ -10,6 +10,8 @@
         <Compile Include="Program.fs" />
         <None Include="Day1\Solution.fsx" />
         <Content Include="Day1\Input.txt" CopyToOutputDirectory="Always" />
+        <Content Include="Day2\Input.txt" CopyToOutputDirectory="Always" />
+        <None Include="Day2\Solution.fsx" />
     </ItemGroup>
 
 </Project>
