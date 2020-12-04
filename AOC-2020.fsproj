@@ -12,6 +12,8 @@
         <Content Include="Day1\Input.txt" CopyToOutputDirectory="Always" />
         <Content Include="Day2\Input.txt" CopyToOutputDirectory="Always" />
         <None Include="Day2\Solution.fsx" />
+        <None Include="Day3\Solution.fsx" />
+        <Content Include="Day3\Input.txt" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
 </Project>
