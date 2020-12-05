@@ -34,21 +34,17 @@ let getPassports () =
     let emptyLinesIndexes =
         input
         |> Seq.indexed
-        |> Seq.filter (fun (i, line) -> String.IsNullOrEmpty line)
+        |> Seq.filter (fun (_, line) -> String.IsNullOrEmpty line)
         |> Seq.map fst
         |> Seq.toArray
 
     let mergedLines =
-        emptyLinesIndexes
-        |> Seq.take (emptyLinesIndexes.Length - 1)
+        emptyLinesIndexes.[..^1]
         |> Seq.indexed
         |> Seq.map (fun (i, emptyIndex) ->
             String.Join
                 (" ",
-                 input
-                 |> Seq.skip emptyIndex
-                 |> Seq.take (emptyLinesIndexes.[i + 1] - emptyIndex)
-                 |> Seq.toArray))
+                 input.[emptyIndex..emptyLinesIndexes.[i + 1]]))
 
     mergedLines |> Seq.map mapToPassport
 
@@ -56,29 +52,22 @@ let validationForPart1 passport =
     passport.BirthYear.IsSome && passport.IssueYear.IsSome && passport.ExpirationYear.IsSome && passport.Height.IsSome && passport.HairColor.IsSome
     && passport.EyeColor.IsSome && passport.PassportId.IsSome
     
+let validateMinMax optionalValue min max =
+    match optionalValue with
+    | Some value ->
+        match int value with
+        | valueAsInt when valueAsInt >= min && valueAsInt <= max -> Ok valueAsInt
+        | _ -> Error "Wrong value"
+    | _ -> Error "Wrong value"
+        
 let validateBirthYear passport =
-    match passport.BirthYear with
-    | Some birthYear ->
-        match int birthYear with
-        | value when value >= 1920 && value <= 2002 -> Ok passport
-        | _ -> Error "Wrong birth year"
-    | _ -> Error "Wrong birth year"
+    validateMinMax passport.BirthYear 1920 2002 |> Result.bind (fun _ -> Ok passport)
     
 let validateIssueYear passport =
-    match passport.IssueYear with
-    | Some issueYear ->
-        match int issueYear with
-        | value when value >= 2010 && value <= 2020 -> Ok passport
-        | _ -> Error "Wrong issue year"
-    | _ -> Error "Wrong issue year"
+    validateMinMax passport.IssueYear 2010 2020 |> Result.bind (fun _ -> Ok passport)
     
 let validateExpirationYear passport =
-    match passport.ExpirationYear with
-    | Some expirationYear ->
-        match int expirationYear with
-        | value when value >= 2020 && value <= 2030 -> Ok passport
-        | _ -> Error "Wrong issue year"
-    | _ -> Error "Wrong issue year"
+    validateMinMax passport.ExpirationYear 2020 2030 |> Result.bind (fun _ -> Ok passport)
 
 let validateHeight passport =
     match passport.Height with
