@@ -4,6 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>AOC_2020</RootNamespace>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +15,8 @@
         <None Include="Day2\Solution.fsx" />
         <None Include="Day3\Solution.fsx" />
         <Content Include="Day3\Input.txt" CopyToOutputDirectory="Always" />
+        <Content Include="Day4\Input.txt" CopyToOutputDirectory="Always" />
+        <None Include="Day4\Solution.fsx" />
     </ItemGroup>
 
 </Project>
