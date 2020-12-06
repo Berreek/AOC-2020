@@ -40,11 +40,11 @@ let getPassports () =
 
     let mergedLines =
         emptyLinesIndexes.[..^1]
-        |> Seq.indexed
-        |> Seq.map (fun (i, emptyIndex) ->
+        |> Seq.pairwise
+        |> Seq.map (fun (emptyIndex, nextEmptyIndex) ->
             String.Join
                 (" ",
-                 input.[emptyIndex..emptyLinesIndexes.[i + 1]]))
+                 input.[emptyIndex..nextEmptyIndex]))
 
     mergedLines |> Seq.map mapToPassport
 

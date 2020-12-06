@@ -27,7 +27,7 @@ let part2  =
     |> Seq.map getSeatId
     |> Seq.sort
     |> Seq.pairwise
-    |> Seq.find (fun (cur, next) -> next - cur <> 1)
+    |> Seq.find (fun (cur, next) -> next - cur > 1)
     |> fst
     |> (+) 1
 printfn $"Result for part 2 is {part2}"
