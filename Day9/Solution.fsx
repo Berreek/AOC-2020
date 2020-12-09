@@ -21,7 +21,7 @@ let getInvalidNumber (index, valueToCheck) =
         |> Seq.exists (isValueValid value))
     |> not
 
-let getRangeSum valueToCheck =
+let getMinAndMaxFromMatchingRange valueToCheck =
     let rangeValues =
         input
         |> Seq.map (fun (index, _) ->
@@ -45,10 +45,7 @@ let part1 =
 printfn $"Answer for part 1 is {part1}"
 
 let part2 =
-    input
-    |> Seq.skip 25
-    |> Seq.find getInvalidNumber
-    |> snd
-    |> getRangeSum
+    part1
+    |> getMinAndMaxFromMatchingRange
 
 printfn $"Answer for part 2 is {part2}"
