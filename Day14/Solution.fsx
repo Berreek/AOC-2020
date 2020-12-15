@@ -81,64 +81,6 @@ let rec processCommand (memory: Map<int64, int64>)
         | ChangeMask changeMask ->
             processCommand memory (currentIndex + 1) commands changeMask maskFunction writeToMemoryFunction
         | WriteToMemory (memoryIndex, valueToWrite) -> writeToMemory memoryIndex valueToWrite
-//
-//let rec processCommandForPart2 (memory: Map<int64, int64>) currentIndex (commands: Command array) currentMask =
-//    let writeToAllPossibleMemories valueAfterUsingMask (valueToWrite: int64) =
-//        let getMemIndex possibility possibilitiesCount =
-//            valueAfterUsingMask
-//            |> Seq.scan (fun (counter, _) c ->
-//                match c with
-//                | '1' -> (counter, '1')
-//                | '0' -> (counter, '0')
-//                | _ ->
-//                    if counter < possibilitiesCount
-//                    then
-//                        printfn $"Counter : {counter} Possibility {possibility} count {possibilitiesCount}"
-//                        let newValue = match ((possibility - counter) % 2) with
-//                        | 1 -> '1'
-//                        | _ -> '0'
-//                        (counter + 1, newValue)
-//                    else (counter + 1, '0')) (0, ' ')
-//            |> Seq.map snd
-//            |> Seq.toArray
-//            |> String
-//            |> fun value -> value.TrimStart() |> binaryToInt
-//
-//        let possibilities =
-//            valueAfterUsingMask
-//            |> Seq.filter ((=) 'x')
-//            |> Seq.length
-//
-//        let possibilitiesCount = possibilities |> pown 2
-//
-//        Seq.init possibilitiesCount id
-//        |> Seq.fold (fun (state : Map<int64,int64>) i ->
-//            let memIndex = getMemIndex i possibilities
-//            printfn $"For possibility count {i} value is {memIndex}"
-//            state.Add (memIndex, valueToWrite)) memory
-//
-//    let writeToMemory memoryIndex =
-//        let valueToWriteAsBinary = intToBinary memoryIndex
-//
-////        printfn $"Value before mask {valueToWriteAsBinary}"
-////        printfn $"Mask {currentMask}"
-////
-//        let valueAfterUsingMask =
-//            maskForPart2 valueToWriteAsBinary currentMask
-//
-////        printfn $"Value after using mask {valueAfterUsingMask}"
-//        let memoryUpdated =
-//            writeToAllPossibleMemories valueAfterUsingMask memoryIndex
-//
-//        processCommandForPart2 memoryUpdated (currentIndex + 1) commands currentMask
-//
-//    if currentIndex = commands.Length then
-//        memory
-//    else
-//        match commands.[currentIndex] with
-//        | ChangeMask changeMask -> processCommandForPart2 memory (currentIndex + 1) commands changeMask
-//        | WriteToMemory (memoryIndex, _) -> writeToMemory memoryIndex
-
 
 let calculate maskFunction writeToMemoryFunction =
     processCommand Map.empty 0 input "" maskFunction writeToMemoryFunction
