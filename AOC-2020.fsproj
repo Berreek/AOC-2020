@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Program.fs" />
         <None Include="Day1\Solution.fsx" />
         <Content Include="Day1\Input.txt" />
         <Content Include="Day2\Input.txt" />
@@ -35,6 +34,10 @@
         <None Include="Day12\Solution.fsx" />
         <None Include="Day13\Solution.fsx" />
         <Content Include="Day13\Input.txt" />
+        <Content Include="Day14\Input.txt" />
+        <None Include="Day14\Solution.fsx" />
+        <Content Include="Day15\Input.txt" />
+        <None Include="Day15\Solution.fsx" />
     </ItemGroup>
 
 </Project>
